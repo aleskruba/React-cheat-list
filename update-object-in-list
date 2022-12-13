@@ -1,0 +1,111 @@
+import * as React from 'react';
+import './style.css';
+
+export default function App() {
+  const [listOfPeople, setListOfPeople] = React.useState([
+    {
+      id: 1,
+      name: 'ales',
+      age: 53,
+      city: 'Brno',
+    },
+    {
+      id: 2,
+      name: 'adam',
+      age: 15,
+      city: 'Prag',
+    },
+    {
+      id: 3,
+      name: 'Josef',
+      age: 64,
+      city: 'Olomouc',
+    },
+  ]);
+
+  const [count, setCount] = React.useState(4);
+
+  const [person, setPerson] = React.useState({
+    id: count,
+    name: '',
+    age: '',
+    city: '',
+  });
+
+  const handlerChange = (e) => {
+    setPerson({ ...person, [e.target.name]: e.target.value });
+  };
+
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+
+    const newPerson = {
+      id: person.id,
+      name: person.name,
+      age: person.age,
+      city: person.city,
+    };
+    setListOfPeople([...listOfPeople, newPerson]);
+    setCount((prevCount) => prevCount + 1);
+    setPerson({
+      id: count,
+      name: '',
+      age: '',
+      city: '',
+    });
+  };
+
+
+  const handlerSubmitName = (id) => {
+    setPerson([...listOfPeople][id])
+ 
+  };
+
+  const handlerSubmitEdit = (e) => {
+    e.preventDefault();
+  
+
+  const newValue = listOfPeople.map(element=>{
+      if (element.id == person.id) {
+        return {...element, name:person.name,age:person.age,city:person.city}
+      }
+      return(element)
+    })
+    setListOfPeople(newValue)
+  };
+
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="name"
+        name="name"
+        value={person.name}
+        onChange={handlerChange}
+      />
+      <input
+        type="text"
+        placeholder="age"
+        name="age"
+        value={person.age}
+        onChange={handlerChange}
+      />
+      <input
+        type="text"
+        placeholder="city"
+        name="city"
+        value={person.city}
+        onChange={handlerChange}
+      />
+      <button onClick={handlerSubmit}>add value</button>
+      <button onClick={handlerSubmitEdit}>edit value</button>
+
+      {listOfPeople.map((element) => (
+        <h1 key={element.id} onClick={() => handlerSubmitName(element.id - 1)}>
+          {element.id} {element.name} {element.age} {element.city}
+        </h1>
+      ))}
+    </div>
+  );
+}
