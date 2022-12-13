@@ -73,6 +73,28 @@ export default function App() {
     })
     setListOfPeople(newValue)
   };
+  
+  /////// second option
+  
+    const handlerSubmitEditObject = (options) => {
+    const defaults = {
+      id: person.id,
+      name: person.name,
+      age: person.age,
+      city: person.city,
+  }
+    options = Object.assign(defaults,options)
+    console.log(options.name)
+
+ const newValue = listOfPeople.map(element=>{
+     if (element.id == person.id) {
+      return {...element, name:options.name,age:options.age,city:options.city}
+     }
+     return element
+   })
+   setListOfPeople(newValue)
+  };
+////////////////////////////////////
 
 
   return (
