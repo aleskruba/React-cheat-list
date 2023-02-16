@@ -1,0 +1,23 @@
+[
+    {
+        "id":1,    
+        "name":"iphone 9",
+        "price":190,
+        "amount":20
+    },
+    {   "id":2,
+        "name":"Huawei 20",
+        "price":140,
+        "amount":15
+    },
+    {   "id":3,
+        "name":"Samsung 7",
+        "price":180,
+        "amount":25
+    },
+    {   "id":4,
+        "name":"Motorola ",
+        "price":100,
+        "amount":12
+    }
+]
