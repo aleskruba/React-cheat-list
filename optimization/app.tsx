@@ -19,6 +19,17 @@ const changeValue = (id:string,value:string) => {
   }))
 }
 
+//optimize  like this
+ const changeValue = React.useCallback( (id:string,value:string) => {
+  setItemValues(prevItems => prevItems.map(item=>{
+    if (item.id === id) {
+      item.value = value
+    }
+    return item
+  }))
+  },[])
+
+
   return (
   <div>
   <p>{JSON.stringify(itemValues)}</p>
