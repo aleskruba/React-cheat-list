@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default function Item({id,value,onChange}) {
+const Item = React.memo( ({id,value,onChange}) => {
 
 return (
   <form>
@@ -14,4 +14,10 @@ return (
   </form>
 )
 
-}
+})
+
+
+export default Item
+
+
+// you have to use memo
